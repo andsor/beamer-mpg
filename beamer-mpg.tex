@@ -1,0 +1,136 @@
+%% beamer-mpg
+% A template for the Beamer LaTeX class partially adopted to the Max Planck Society (MPG) design
+%
+% Assembled by Andreas Sorge, MPI for Dynamics and Self-Organization, as@ds.mpg.de
+%
+% MPG Corporate Design Manual 2008 (3rd edition)
+% cf. MPG Intranet: https://intranet.mpg.de/gv/abt06/Referat_Vb/Documents/CD%20Manual%202008.pdf
+
+%% LICENSE
+%
+%     GNU General Public License version 3 or any later version
+%
+%     This program is free software: you can redistribute it and/or modify
+%     it under the terms of the GNU General Public License as published by
+%     the Free Software Foundation, either version 3 of the License, or
+%     (at your option) any later version.
+% 
+%     This program is distributed in the hope that it will be useful,
+%     but WITHOUT ANY WARRANTY; without even the implied warranty of
+%     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%     GNU General Public License for more details.
+% 
+%     You should have received a copy of the GNU General Public License
+%     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+%
+
+%% HOW TO RUN THIS PRESENTATION ON DUAL-SCREEN
+%
+% Laptop and HD screen
+% Turn on HD screen first
+% Then make Laptop scale via:
+% xrandr --output LVDS1 --mode 1366x768 --scale 1.4056x1.5625
+% run impressive
+
+%% HOW TO RUN THIS PRESENTATION WITH IMPRESSIVE
+%
+% makebeamerinfo <filename>.pdf
+% impressive <filename>.pdf
+
+%% 
+%% REQUIREMENTS
+%% beamer >= 3.09
+
+
+%% Aspect ratio 16:10, delete for 4:3
+\documentclass[english,aspectratio=1610]{beamer}
+
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+
+\usepackage{pgfpages}
+
+
+%% MPG green (Pantone 328), see CD manual 2008, p. 12
+\definecolor{mpg-green}{cmyk}{1,0,0.57,0.3}
+
+%% Beamer color theme
+\usecolortheme[cmyk={1,0,0.57,0.3}]{structure}
+
+%% Use Venturis ADF instead of Bodoni
+\setbeamerfont{structure}{family*=yvt}
+\usepackage{helvet}
+
+%% use MPG green also for alerted text
+\setbeamercolor{alerted text}{fg=mpg-green}
+
+%% deactivate navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+%% custom Section page : no 'Section X' text
+\setbeamertemplate{section page}
+{
+  \begin{centering}
+    \begin{beamercolorbox}[sep=12pt,center]{part title}
+      \usebeamerfont{section title}\insertsection\par
+    \end{beamercolorbox}
+  \end{centering}
+}
+
+%% custom Subsection page: no 'Subsection X.Y' text
+\setbeamertemplate{subsection page}
+{
+  \begin{centering}
+    \begin{beamercolorbox}[sep=8pt,center]{part title}
+      \usebeamerfont{subsection title}\insertsubsection\par
+    \end{beamercolorbox}
+  \end{centering}
+}
+
+%% shows the section page at the begin of each section ...
+\AtBeginSection[]
+{
+  \frame{\sectionpage}
+}
+
+%% shows the subsection page at the begin of each subsection ...
+\AtBeginSubsection[]
+{
+  \frame{\subsectionpage}
+}
+
+%% Activate this for production
+%% open pdf in fullscreen mode (if in beamer mode, default)
+\mode<beamer>{  \hypersetup{pdfpagemode=FullScreen} }
+
+
+
+\title{beamer-mpg sample file}
+\author{Marx Planck}
+\date{11.1.11\\Thesis Committee Meeting}
+\institute{MPI}
+\titlegraphic{\includegraphics[height=2cm]{minerva}}
+
+
+\begin{document}
+
+%% Title frame
+\begin{frame}[label=mytitle]
+ \titlepage
+\end{frame}
+
+%% Table of Contents
+\begin{frame}<article>{Outline}
+ \tableofcontents{}[hideallsubsections]
+\end{frame}
+
+%% Show title frame again in the end to have some nice ending (do not put ``Thanks for listening'', they will be asleep anyway)
+\againframe{mytitle}
+
+\end{document}
